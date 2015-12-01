@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Snake</title>
+  <title>Snake!</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
+  <h1 id="pageTitle">Snake!</h1>
+  <div id="indicatorCont">
+    <div class="indicator" id="scoreCont">Score: &nbsp;&nbsp;&nbsp;<span id="score">&nbsp;</span></div>
+    <div class="indicator" id="speedCont">Speed: &nbsp;&nbsp;&nbsp;<span id="speed">&nbsp;</span></div>
+    <div class="indicator" id="widthCont">Width: &nbsp;&nbsp;&nbsp;<span id="width">&nbsp;</span></div>
+    <div class="indicator" id="heightCont">Height: &nbsp;&nbsp;&nbsp;<span id="height">&nbsp;</span></div>
+  </div>
+  <div id="buttonCont">
+    <div class="button" id="newGameButton">New Game</div>
+    <div class="button" id="resetGameButton">Reset</div>
+  </div>
+  <br><br><br>
+  <div id="gameBoardCont">
+    <div id="gameBoard">Please enable javascript to play snake!</div><!-- This is generated, not hard coded. -->
+  </div>
+  <br><br><br>
+  <div id="instructionsCont">
+    <p id="instructions">(Insert instructions here...)</p>
+  </div>
   <script type="text/javascript" src="script.js"></script>
+  <!-- Designed for Google Chrome -->
 </body>
 </html>
