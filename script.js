@@ -35,6 +35,7 @@ function startNewGame() {
   generateBoard(width, height);
 }
 function generateBoard(w, h) {
+  clearBoardHTML();
   for(i=0; i<h; ++i) { //i is the row
     board[i] = [];
     for(j=0; j<h; ++j) { //j is the column
