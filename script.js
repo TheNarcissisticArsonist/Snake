@@ -38,7 +38,7 @@ function generateBoard(w, h) {
   clearBoard();
   for(i=0; i<h; ++i) { //i is the row
     board[i] = [];
-    for(j=0; j<h; ++j) { //j is the column
+    for(j=0; j<w; ++j) { //j is the column
       elements.boardCont.innerHTML += "<div class='boardSquare' id='boardSquare"+String(i)+String(j)+"'></div>";
       board[i][j] = [document.getElementById("boardSquare"+String(i)+String(j)), false, false, false];
     }
