@@ -50,4 +50,5 @@ div {
 #countdown {
   display: none;
   position: absolute;
+  text-align: center;
 }
