@@ -5,10 +5,14 @@ elements = {
   score:        document.getElementById("score"),
   speed:        document.getElementById("speed"),
   width:        document.getElementById("width"),
-  height:       document.getElementById("height")
+  height:       document.getElementById("height"),
+  countdown:    document.getElementById("countdown")
 };
 board = []; //board[row][column][element, food?, snake?, snakehead?]
 gameInProgress = false;
+lastFrameTime = null;
+currentTime = null;
+alive = false;
 
 function confirmStartNewGame() {
   if(confirm("Starting new game...")) {
@@ -33,6 +37,7 @@ function startNewGame() {
   }
   while(speed % 1 != 0 || speed > 10 || speed < 0);
   generateBoard(width, height);
+  startGameLoop();
 }
 function generateBoard(w, h) {
   clearBoard();
@@ -48,6 +53,43 @@ function generateBoard(w, h) {
 function clearBoard() {
   elements.boardCont.innerHTML = "";
   board = [];
+}
+
+function startGameLoop() {
+  alive = true;
+  elements.countdown.style.display = "inline-block";
+  elements.countdown.style.width = "120px";
+  elements.countdown.style.height = "48px";
+  left = (window.innerWidth - elements.countdown.style.width.slice(0,-2))/2;
+  myTop = (window.innerHeight - elements.countdown.style.height.slice(0,-2))/2; //"top" is interpreted as window.top, so I can't use it -_-
+  elements.countdown.style.left = String(left)+"px";
+  elements.countdown.style.top = String(myTop)+"px";
+
+  elements.countdown.innerHTML = "3";
+  window.setTimeout(function() {
+    elements.countdown.innerHTML = "2";
+    window.setTimeout(function() {
+      elements.countdown.innerHTML = "1";
+      window.setTimeout(function() {
+        elements.countdown.innerHTML = "Go!";
+        opacity = 1;
+        elements.countdown.style.opacity = opacity;
+        fadeOutLoop = window.setInterval(function() {
+          if(opacity <= 0) {
+            elements.countdown.style.display = "none";
+            elements.countdown.innerHTML = "&nbsp;";
+            elements.countdown.style.opacity = 1;
+            window.clearInterval(fadeOutLoop);
+          }
+          opacity -= 0.1;
+          elements.countdown.style.opacity = opacity;
+        },20);
+      },1000);
+    },1000);
+  },1000);
+}
+function animate() {
+
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
