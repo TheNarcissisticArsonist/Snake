@@ -46,3 +46,8 @@ div {
   margin: 0px 2px;
   border-radius: 10px;
 }
+
+#countdown {
+  display: none;
+  position: absolute;
+}
