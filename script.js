@@ -27,7 +27,7 @@ function startNewGame() {
   do {
     width = prompt("How wide do you want the board to be?\nPlease enter a positive integer.");
   }
-  while(width % 1 != 0 || height < 0);
+  while(width % 1 != 0 || width < 0);
   do {
     height = prompt("How tall do you want the board to be?\nPlease enter a positive integer.");
   }
