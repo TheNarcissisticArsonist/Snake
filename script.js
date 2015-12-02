@@ -51,3 +51,5 @@ function clearBoardHTML() {
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
 elements.reset.addEventListener("click", clearBoardHTML);
+
+clearBoardHTML();
