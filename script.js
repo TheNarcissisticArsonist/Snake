@@ -64,6 +64,7 @@ function startGameLoop() {
   myTop = (window.innerHeight - elements.countdown.style.height.slice(0,-2))/2; //"top" is interpreted as window.top, so I can't use it -_-
   elements.countdown.style.left = String(left)+"px";
   elements.countdown.style.top = String(myTop)+"px";
+  elements.countdown.style.opacity = 1;
 
   elements.countdown.innerHTML = "3";
   window.setTimeout(function() {
@@ -78,7 +79,6 @@ function startGameLoop() {
           if(opacity <= 0) {
             elements.countdown.style.display = "none";
             elements.countdown.innerHTML = "&nbsp;";
-            elements.countdown.style.opacity = 1;
             window.clearInterval(fadeOutLoop);
           }
           opacity -= 0.1;
