@@ -7,7 +7,7 @@ elements = {
   width:        document.getElementById("width"),
   height:       document.getElementById("height")
 };
-board = [];
+board = []; //board[row][column][element, food?, snake?, snakehead?]
 gameInProgress = false;
 
 function confirmStartNewGame() {
@@ -32,12 +32,20 @@ function startNewGame() {
     speed = prompt("How fast do you want the snake to move?\nPlease enter a positive integer between 0 and 10.");
   }
   while(speed % 1 != 0 || speed > 10 || speed < 0);
+  generateBoard(width, height);
 }
 function generateBoard(w, h) {
-  //Temp
+  for(i=0; i<h; ++i) { //i is the row
+    board[i] = [];
+    for(j=0; j<h; ++j) { //j is the column
+      elements.boardCont.innerHTML += "<div class='boardSquare' id='boardSquare"+String(i)+String(j)+"'></div>";
+      board[i][j] = [document.getElementById("boardSquare"+String(i)+String(j)), false, false, false];
+    }
+    elements.boardCont.innerHTML += "<br>";
+  }
 }
 function clearBoardHTML() {
-  //Temp
+  elements.boardCont.innerHTML = "";
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
