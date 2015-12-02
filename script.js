@@ -64,6 +64,7 @@ function startGameLoop() {
   myTop = (window.innerHeight - elements.countdown.style.height.slice(0,-2))/2; //"top" is interpreted as window.top, so I can't use it -_-
   elements.countdown.style.left = String(left)+"px";
   elements.countdown.style.top = String(myTop)+"px";
+  elements.countdown.style.margin = "0px";
   elements.countdown.style.opacity = 1;
 
   elements.countdown.innerHTML = "3";
