@@ -26,14 +26,23 @@ function startNewGame() {
   speed = 0;
   do {
     width = prompt("How wide do you want the board to be?\nPlease enter a positive integer.");
+    if(width == null) {
+      return;
+    }
   }
   while(width % 1 != 0 || width < 0);
   do {
     height = prompt("How tall do you want the board to be?\nPlease enter a positive integer.");
+    if(height == null) {
+      return;
+    }
   }
   while(height % 1 != 0 || height < 0);
   do {
     speed = prompt("How fast do you want the snake to move?\nPlease enter a positive integer between 0 and 10.");
+    if(speed == null) {
+      return;
+    }
   }
   while(speed % 1 != 0 || speed > 10 || speed < 0);
   generateBoard(width, height);
