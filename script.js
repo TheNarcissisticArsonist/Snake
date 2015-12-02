@@ -35,7 +35,7 @@ function startNewGame() {
   generateBoard(width, height);
 }
 function generateBoard(w, h) {
-  clearBoardHTML();
+  clearBoard();
   for(i=0; i<h; ++i) { //i is the row
     board[i] = [];
     for(j=0; j<h; ++j) { //j is the column
@@ -45,11 +45,12 @@ function generateBoard(w, h) {
     elements.boardCont.innerHTML += "<br>";
   }
 }
-function clearBoardHTML() {
+function clearBoard() {
   elements.boardCont.innerHTML = "";
+  board = [];
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
-elements.reset.addEventListener("click", clearBoardHTML);
+elements.reset.addEventListener("click", clearBoard);
 
-clearBoardHTML();
+clearBoard();
