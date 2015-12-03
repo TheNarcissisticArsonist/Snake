@@ -249,6 +249,12 @@ function eat() {
     board[snakeWasHere[0]][snakeWasHere[1]][2] = true;
   }
 }
+function updateDirection(newDir) {
+  if(newDir != currentDirection && newDir != oldDirection) {
+    oldDirection = currentDirection
+    currentDirection = newDir;
+  }
+}
 function updateDisplay() {
   for(i=0; i<height; ++i) {
     for(j=0; j<width; ++j) {
@@ -280,6 +286,18 @@ document.addEventListener("keydown", function(event) {
       break;
     case 82: //4
       clearBoardAndUI();
+      break;
+    case 38: //up
+      updateDirection([-1,0]);
+      break;
+    case 37: //left
+      updateDirection([0,-1]);
+      break;
+    case 40: //down
+      updateDirection([1,0]);
+      break;
+    case 39: //right
+      updateDirection([0,1]);
       break;
   }
 });
