@@ -9,11 +9,16 @@ elements = {
   countdown:    document.getElementById("countdown")
 };
 board = []; //board[row][column][element, food?, snake?, snakehead?]
+direction = []; //[x,y]
+width = null;
+height = null;
+speed = null;
 gameInProgress = false;
 lastFrameTime = null;
 currentTime = null;
 delta = null;
 alive = false;
+snakeColor = "#00ff00";
 
 function confirmStartNewGame() {
   if(confirm("Starting new game...")) {
@@ -58,15 +63,34 @@ function generateBoard(w, h) {
   for(i=0; i<h; ++i) { //i is the row
     board[i] = [];
     for(j=0; j<w; ++j) { //j is the column
+      board[i][j] = [];
       elements.boardCont.innerHTML += "<div class='boardSquare' id='boardSquare"+String(i)+String(j)+"'></div>";
-      board[i][j] = [document.getElementById("boardSquare"+String(i)+String(j)), false, false, false];
     }
     elements.boardCont.innerHTML += "<br>";
+  }
+  grabBoard();
+}
+function grabBoard() {
+  for(i=0; i<height; ++i) {
+    for(j=0; j<width; ++j) {
+      board[i][j][0] = document.getElementById("boardSquare"+String(i)+String(j));
+      board[i][j][1] = false;
+      board[i][j][2] = false;
+      board[i][j][3] = false;
+    }
   }
 }
 function clearBoard() {
   elements.boardCont.innerHTML = "";
   board = [];
+}
+
+function createSnake() {
+  row = Math.floor(Math.random() * height);
+  col = Math.floor(Math.random() * width);
+  board[row][col][0].style.backgroundColor = snakeColor;
+  board[row][col][2] = true;
+  board[row][col][3] = true;
 }
 
 function startGameLoop() {
@@ -91,6 +115,7 @@ function startGameLoop() {
         opacity = 1;
         elements.countdown.style.opacity = opacity;
         lastFrameTime = new Date().getTime();
+        createSnake();
         animate();
         fadeOutLoop = window.setInterval(function() {
           opacity -= 0.1;
