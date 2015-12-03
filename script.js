@@ -13,6 +13,7 @@ currentDirection = []; //[row,column]
 oldDirection = []; //[row,column]
 snake = []; //[[row,column],[row,column], ...]
 deadSnake = []; //[row, column]
+snakeWasHere = []; //[row, column]
 food = [];
 width = null;
 height = null;
@@ -165,6 +166,7 @@ function animate() {
   if(delta > 1000/speed) {
     delta = 0;
     updateSnakePosition();
+    eat();
     updateDisplay();
   }
 
@@ -186,6 +188,7 @@ function gameOver() {
 }
 
 function updateSnakePosition() {
+  snakeWasHere = [snake[snake.length-1][0], snake[snake.length-1][1]];
   for(i=snake.length-1; i>0; --i) {
     snake[i] = snake[i-1];
   }
@@ -216,6 +219,14 @@ function updateSnakePosition() {
     for(i=1; i<snake.length; ++i) {
       board[snake[i][0]][snake[i][1]][2] = true;
     }
+  }
+}
+function eat() {
+  if(gameOverBool) {
+    return;
+  }
+  if(board[snake[0][0]][snake[0][1]][1] == true) {
+    snake.push(snakeWasHere);
   }
 }
 function updateDisplay() {
