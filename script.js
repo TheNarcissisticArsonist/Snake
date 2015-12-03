@@ -19,6 +19,7 @@ width = null;
 height = null;
 totalSquares = null;
 speed = null;
+score = 0;
 gameInProgress = false;
 gameOverBool = false;
 lastFrameTime = null;
@@ -64,7 +65,8 @@ function startNewGame() {
   }
   while(speed % 1 != 0 || speed > 10 || speed <= 0 || Number(speed) == NaN);
   generateBoard(width, height);
-  elements.score.innerHTML = "1";
+  score = 1;
+  elements.score.innerHTML = String(score);
   elements.speed.innerHTML = String(speed);
   elements.width.innerHTML = String(width);
   elements.height.innerHTML = String(height);
@@ -249,6 +251,8 @@ function updateDisplay() {
       }
     }
   }
+  score = snake.length;
+  elements.score.innerHTML = score;
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
