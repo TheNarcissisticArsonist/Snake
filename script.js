@@ -85,6 +85,7 @@ function startGameLoop() {
         elements.countdown.innerHTML = "Go!";
         opacity = 1;
         elements.countdown.style.opacity = opacity;
+        animate();
         fadeOutLoop = window.setInterval(function() {
           opacity -= 0.1;
           elements.countdown.style.opacity = opacity;
@@ -99,7 +100,7 @@ function startGameLoop() {
   },1000);
 }
 function animate() {
-
+  
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
