@@ -18,6 +18,7 @@ height = null;
 totalSquares = null;
 speed = null;
 gameInProgress = false;
+gameOverBool = false;
 lastFrameTime = null;
 currentTime = null;
 delta = null;
@@ -182,22 +183,32 @@ function updateSnakePosition() {
   }
   snake[0][0] += currentDirection[0];
   snake[0][1] += currentDirection[1];
-  for(i=1; i<snake.length; ++i) {
-    if(snake[0] == snake[i]) {
-      gameOver();
+  for(i=0; i<snake.length; ++i) {
+    if(snake[i][0]<0 || snake[i][1]<0 || snake[i][0]>height-1 || snake[i][1]>width-1) {
+      gameOverBool = true;
+    }
+    if(i>0) {
+      if(snake[i] == snake[0]) {
+        gameOverBool = true;
+      }
     }
   }
-  for(i=0; i<height; ++i) {
-    for(j=0; j<width; ++j) {
-      board[i][j][1] = 0;
-      board[i][j][2] = 0;
-      board[i][j][3] = 0;
-    }
+  if(gameOverBool) {
+    gameOver();
   }
-  board[snake[0][0]][snake[0][1]][2] = true;
-  board[snake[0][0]][snake[0][1]][3] = true;
-  for(i=1; i<snake.length; ++i) {
-    board[snake[i][0]][snake[i][1]][2] = true;
+  else {
+    for(i=0; i<height; ++i) {
+      for(j=0; j<width; ++j) {
+        board[i][j][1] = 0;
+        board[i][j][2] = 0;
+        board[i][j][3] = 0;
+      }
+    }
+    board[snake[0][0]][snake[0][1]][2] = true;
+    board[snake[0][0]][snake[0][1]][3] = true;
+    for(i=1; i<snake.length; ++i) {
+      board[snake[i][0]][snake[i][1]][2] = true;
+    }
   }
 }
 function updateDisplay() {
