@@ -284,9 +284,6 @@ document.addEventListener("keydown", function(event) {
     case 78: //n
       confirmStartNewGame();
       break;
-    case 82: //4
-      clearBoardAndUI();
-      break;
     case 38: //up
       updateDirection([-1,0]);
       break;
