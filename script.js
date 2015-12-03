@@ -105,9 +105,9 @@ function animate() {
   currentTime = new Date().getTime();
   delta = currentTime - lastFrameTime;
 
-  console.log(lastFrameTime);
+  /*console.log(lastFrameTime);
   console.log(currentTime);
-  console.log(delta);
+  console.log(delta);*/
 
   lastFrameTime = currentTime;
   requestAnimationFrame(animate);
