@@ -58,12 +58,12 @@ function startNewGame() {
   while(height % 1 != 0 || height < 3);
   totalSquares = width * height;
   do {
-    speed = prompt("How fast do you want the snake to move?\nPlease enter a positive integer between 0 and 10.");
+    speed = prompt("How fast do you want the snake to move?\nPlease enter a positive integer between 0 and 20.");
     if(speed == null) {
       return;
     }
   }
-  while(speed % 1 != 0 || speed > 10 || speed <= 0 || Number(speed) == NaN);
+  while(speed % 1 != 0 || speed > 20 || speed <= 0 || Number(speed) == NaN);
   generateBoard(width, height);
   score = 1;
   elements.score.innerHTML = String(score);
