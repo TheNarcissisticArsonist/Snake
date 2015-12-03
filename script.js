@@ -86,13 +86,13 @@ function startGameLoop() {
         opacity = 1;
         elements.countdown.style.opacity = opacity;
         fadeOutLoop = window.setInterval(function() {
-          if(opacity <= 0) {
-            elements.countdown.style.display = "none";
-            elements.countdown.innerHTML = "&nbsp;";
-            window.clearInterval(fadeOutLoop);
-          }
           opacity -= 0.1;
           elements.countdown.style.opacity = opacity;
+            if(opacity <= 0) {
+              elements.countdown.style.display = "none";
+              elements.countdown.innerHTML = "&nbsp;";
+              window.clearInterval(fadeOutLoop);
+            }
         },20);
       },1000);
     },1000);
