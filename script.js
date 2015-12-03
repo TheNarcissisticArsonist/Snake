@@ -226,6 +226,7 @@ function eat() {
     return;
   }
   if(board[snake[0][0]][snake[0][1]][1] == true) {
+    board[snake[0][0]][snake[0][1]][1] = false;
     snake.push(snakeWasHere);
     board[snakeWasHere[0]][snakeWasHere[1]][1] = false;
     board[snakeWasHere[0]][snakeWasHere[1]][2] = true;
