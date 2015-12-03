@@ -93,6 +93,21 @@ function createSnake() {
   board[row][col][0].style.backgroundColor = snakeColor;
   board[row][col][2] = true;
   board[row][col][3] = true;
+
+  switch(Math.floor(Math.random() * 4)) {
+    case 0:
+      direction = [0,1];
+      break;
+    case 1:
+      direction = [0,-1];
+      break;
+    case 2:
+      direction = [1,0];
+      break;
+    case 3:
+      direction = [-1,0];
+      break;
+  }
 }
 
 function startGameLoop() {
