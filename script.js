@@ -278,6 +278,9 @@ document.addEventListener("keydown", function(event) {
     case 78: //n
       confirmStartNewGame();
       break;
+    case 82: //4
+      clearBoardAndUI();
+      break;
   }
 });
 
