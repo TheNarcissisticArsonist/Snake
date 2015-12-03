@@ -170,8 +170,10 @@ function animate() {
   console.log(currentTime);
   console.log(delta);*/
 
-  lastFrameTime = currentTime;
-  requestAnimationFrame(animate);
+  if(!gameOverBool) {
+    lastFrameTime = currentTime;
+    requestAnimationFrame(animate);
+  }
 }
 function gameOver() {
   alert("Game over!");
