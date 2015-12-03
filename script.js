@@ -132,7 +132,12 @@ function startGameLoop() {
 }
 function animate() {
   currentTime = new Date().getTime();
-  delta = currentTime - lastFrameTime;
+  delta += currentTime - lastFrameTime;
+
+  if(delta > 1000/speed) {
+    delta = 0;
+    move();
+  }
 
   /*console.log(lastFrameTime);
   console.log(currentTime);
@@ -140,6 +145,10 @@ function animate() {
 
   lastFrameTime = currentTime;
   requestAnimationFrame(animate);
+}
+
+function move() {
+  console.log("Moved");
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
