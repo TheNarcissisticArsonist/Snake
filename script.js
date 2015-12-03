@@ -12,6 +12,7 @@ board = []; //board[row][column][element, food?, snake?, snakehead?]
 currentDirection = []; //[row,column]
 oldDirection = []; //[row,column]
 snake = []; //[[row,column],[row,column], ...]
+deadSnake = []; //[row, column]
 food = [];
 width = null;
 height = null;
@@ -27,6 +28,7 @@ snakeColor = "#00ff00";
 snakeHeadColor = "#008800";
 foodColor = "#0000ff";
 emptySquareColor = "#252525";
+deadSnakeColor = "#ff0000";
 
 function confirmStartNewGame() {
   if(confirm("Starting new game...")) {
@@ -171,6 +173,7 @@ function animate() {
   console.log(delta);*/
 
   if(gameOverBool) {
+    board[deadSnake[0]][deadSnake[1]][0].style.backgroundColor = deadSnakeColor;
     gameOver();
   }
   else {
@@ -191,10 +194,12 @@ function updateSnakePosition() {
   for(i=0; i<snake.length; ++i) {
     if(snake[i][0]<0 || snake[i][1]<0 || snake[i][0]>height-1 || snake[i][1]>width-1) {
       gameOverBool = true;
+      deadSnake = [snake[i][0]-currentDirection[0],snake[i][1]-currentDirection[1]];
     }
     if(i>0) {
       if(snake[i] == snake[0]) {
         gameOverBool = true;
+        deadSnake = [snake[i][0]-currentDirection[0],snake[i][1]-currentDirection[1]];
       }
     }
   }
