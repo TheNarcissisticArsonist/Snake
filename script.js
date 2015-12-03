@@ -250,10 +250,8 @@ function eat() {
   }
 }
 function updateDirection(newDir) {
-  if(newDir != currentDirection && newDir != oldDirection) {
-    oldDirection = currentDirection
-    currentDirection = newDir;
-  }
+  oldDirection = currentDirection;
+  currentDirection = newDir;
 }
 function updateDisplay() {
   for(i=0; i<height; ++i) {
