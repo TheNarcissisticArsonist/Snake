@@ -62,7 +62,7 @@ function startNewGame() {
       return;
     }
   }
-  while(speed % 1 != 0 || speed > 10 || speed < 0);
+  while(speed % 1 != 0 || speed > 10 || speed <= 0 || Number(speed) == NaN);
   generateBoard(width, height);
   elements.score.innerHTML = "1";
   elements.speed.innerHTML = String(speed);
@@ -190,7 +190,8 @@ function gameOver() {
 function updateSnakePosition() {
   snakeWasHere = [snake[snake.length-1][0], snake[snake.length-1][1]];
   for(i=snake.length-1; i>0; --i) {
-    snake[i] = snake[i-1];
+    snake[i][0] = snake[i-1][0];
+    snake[i][1] = snake[i-1][1];
   }
   snake[0][0] += currentDirection[0];
   snake[0][1] += currentDirection[1];
@@ -209,7 +210,6 @@ function updateSnakePosition() {
   if(!gameOverBool) {
     for(i=0; i<height; ++i) {
       for(j=0; j<width; ++j) {
-        board[i][j][1] = 0;
         board[i][j][2] = 0;
         board[i][j][3] = 0;
       }
@@ -227,6 +227,8 @@ function eat() {
   }
   if(board[snake[0][0]][snake[0][1]][1] == true) {
     snake.push(snakeWasHere);
+    board[snakeWasHere[0]][snakeWasHere[1]][1] = false;
+    board[snakeWasHere[0]][snakeWasHere[1]][2] = true;
   }
 }
 function updateDisplay() {
