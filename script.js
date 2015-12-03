@@ -97,6 +97,12 @@ function grabBoard() {
 function clearBoard() {
   elements.boardCont.innerHTML = "";
   board = [];
+  snake = [];
+  currentDirection = [];
+  oldDirection = [];
+  deadSnake = [];
+  snakeWasHere = [];
+  gameOverBool = false;
 }
 
 function createSnake() {
