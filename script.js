@@ -78,7 +78,7 @@ function generateBoard(w, h) {
     board[i] = [];
     for(j=0; j<w; ++j) { //j is the column
       board[i][j] = [];
-      elements.boardCont.innerHTML += "<div class='boardSquare' id='boardSquare"+String(i)+String(j)+"'></div>";
+      elements.boardCont.innerHTML += "<div class='boardSquare' id='boardSquareR"+String(i)+"C"+String(j)+"'></div>";
     }
     elements.boardCont.innerHTML += "<br>";
   }
@@ -87,7 +87,7 @@ function generateBoard(w, h) {
 function grabBoard() {
   for(i=0; i<height; ++i) {
     for(j=0; j<width; ++j) {
-      board[i][j][0] = document.getElementById("boardSquare"+String(i)+String(j));
+      board[i][j][0] = document.getElementById("boardSquareR"+String(i)+"C"+String(j));
       board[i][j][1] = false;
       board[i][j][2] = false;
       board[i][j][3] = false;
