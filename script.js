@@ -98,6 +98,7 @@ function clearBoard() {
   elements.boardCont.innerHTML = "";
   board = [];
   snake = [];
+  food = [];
   currentDirection = [];
   oldDirection = [];
   deadSnake = [];
