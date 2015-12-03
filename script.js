@@ -116,8 +116,8 @@ function clearBoardAndUI() {
 }
 
 function createSnake() {
-  row = Math.floor(Math.random() * (height-2) + 1);
-  col = Math.floor(Math.random() * (width-2) + 1);
+  row = Math.floor(height/2);
+  col = Math.floor(width/2);
   board[row][col][0].style.backgroundColor = snakeHeadColor;
   board[row][col][2] = true;
   board[row][col][3] = true;
