@@ -12,6 +12,7 @@ board = []; //board[row][column][element, food?, snake?, snakehead?]
 gameInProgress = false;
 lastFrameTime = null;
 currentTime = null;
+delta = null;
 alive = false;
 
 function confirmStartNewGame() {
@@ -85,6 +86,7 @@ function startGameLoop() {
         elements.countdown.innerHTML = "Go!";
         opacity = 1;
         elements.countdown.style.opacity = opacity;
+        lastFrameTime = new Date().getTime();
         animate();
         fadeOutLoop = window.setInterval(function() {
           opacity -= 0.1;
@@ -100,7 +102,15 @@ function startGameLoop() {
   },1000);
 }
 function animate() {
-  
+  currentTime = new Date().getTime();
+  delta = currentTime - lastFrameTime;
+
+  console.log(lastFrameTime);
+  console.log(currentTime);
+  console.log(delta);
+
+  lastFrameTime = currentTime;
+  requestAnimationFrame(animate);
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
