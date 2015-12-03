@@ -107,10 +107,10 @@ function clearBoard() {
 function clearBoardAndUI() {
   if(confirm("Are you sure you want to reset?")) {
     clearBoard();
-    elements.score.innerHTML = "";
-    elements.speed.innerHTML = "";
-    elements.width.innerHTML = "";
-    elements.height.innerHTML = "";
+    elements.score.innerHTML = "&nbsp;&nbsp;";
+    elements.speed.innerHTML = "&nbsp;&nbsp;";
+    elements.width.innerHTML = "&nbsp;&nbsp;";
+    elements.height.innerHTML = "&nbsp;&nbsp;";
   }
 }
 
