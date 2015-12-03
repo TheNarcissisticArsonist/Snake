@@ -210,8 +210,8 @@ function updateSnakePosition() {
   if(!gameOverBool) {
     for(i=0; i<height; ++i) {
       for(j=0; j<width; ++j) {
-        board[i][j][2] = 0;
-        board[i][j][3] = 0;
+        board[i][j][2] = false;
+        board[i][j][3] = false;
       }
     }
     board[snake[0][0]][snake[0][1]][2] = true;
