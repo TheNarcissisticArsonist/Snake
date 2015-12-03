@@ -9,7 +9,10 @@ elements = {
   countdown:    document.getElementById("countdown")
 };
 board = []; //board[row][column][element, food?, snake?, snakehead?]
-direction = []; //[x,y]
+currentDirection = []; //[row,column]
+oldDirection = []; //[row,column]
+snake = []; //[[row,column],[row,column], ...]
+food = [];
 width = null;
 height = null;
 totalSquares = null;
@@ -22,6 +25,7 @@ alive = false;
 snakeColor = "#00ff00";
 snakeHeadColor = "#008800";
 foodColor = "#0000ff";
+emptySquareColor = "#252525";
 
 function confirmStartNewGame() {
   if(confirm("Starting new game...")) {
@@ -96,18 +100,20 @@ function createSnake() {
   board[row][col][2] = true;
   board[row][col][3] = true;
 
+  snake[0] = [row, col];
+
   switch(Math.floor(Math.random() * 4)) {
     case 0:
-      direction = [0,1];
+      currentDirection = [0,1];
       break;
     case 1:
-      direction = [0,-1];
+      currentDirection = [0,-1];
       break;
     case 2:
-      direction = [1,0];
+      currentDirection = [1,0];
       break;
     case 3:
-      direction = [-1,0];
+      currentDirection = [-1,0];
       break;
   }
 }
@@ -155,7 +161,7 @@ function animate() {
 
   if(delta > 1000/speed) {
     delta = 0;
-    move();
+    updateSnakePosition();
     updateDisplay();
   }
 
@@ -166,9 +172,33 @@ function animate() {
   lastFrameTime = currentTime;
   requestAnimationFrame(animate);
 }
+function gameOver() {
+  alert("Game over!");
+}
 
-function move() {
-  console.log("Moved");
+function updateSnakePosition() {
+  for(i=snake.length-1; i>0; --i) {
+    snake[i] = snake[i-1];
+  }
+  snake[0][0] += currentDirection[0];
+  snake[0][1] += currentDirection[1];
+  for(i=1; i<snake.length; ++i) {
+    if(snake[0] == snake[i]) {
+      gameOver();
+    }
+  }
+  for(i=0; i<height; ++i) {
+    for(j=0; j<width; ++j) {
+      board[i][j][1] = 0;
+      board[i][j][2] = 0;
+      board[i][j][3] = 0;
+    }
+  }
+  board[snake[0][0]][snake[0][1]][2] = true;
+  board[snake[0][0]][snake[0][1]][3] = true;
+  for(i=1; i<snake.length; ++i) {
+    board[snake[i][0]][snake[i][1]][2] = true;
+  }
 }
 function updateDisplay() {
   for(i=0; i<height; ++i) {
@@ -181,6 +211,9 @@ function updateDisplay() {
       }
       else if(board[i][j][1]) {
         board[i][j][0].style.backgroundColor = foodColor;
+      }
+      else {
+        board[i][j][0].style.backgroundColor = emptySquareColor;
       }
     }
   }
