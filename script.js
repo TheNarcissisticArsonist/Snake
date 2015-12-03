@@ -12,6 +12,7 @@ board = []; //board[row][column][element, food?, snake?, snakehead?]
 direction = []; //[x,y]
 width = null;
 height = null;
+totalSquares = null;
 speed = null;
 gameInProgress = false;
 lastFrameTime = null;
@@ -31,19 +32,20 @@ function startNewGame() {
   height = 0;
   speed = 0;
   do {
-    width = prompt("How wide do you want the board to be?\nPlease enter a positive integer.");
+    width = prompt("How wide do you want the board to be?\nPlease enter an integer greater than 2.");
     if(width == null) {
       return;
     }
   }
-  while(width % 1 != 0 || width < 0);
+  while(width % 1 != 0 || width < 3);
   do {
-    height = prompt("How tall do you want the board to be?\nPlease enter a positive integer.");
+    height = prompt("How tall do you want the board to be?\nPlease enter an integer greater than 2.");
     if(height == null) {
       return;
     }
   }
-  while(height % 1 != 0 || height < 0);
+  while(height % 1 != 0 || height < 3);
+  totalSquares = width * height;
   do {
     speed = prompt("How fast do you want the snake to move?\nPlease enter a positive integer between 0 and 10.");
     if(speed == null) {
