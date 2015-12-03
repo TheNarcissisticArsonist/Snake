@@ -47,6 +47,10 @@ function startNewGame() {
   }
   while(speed % 1 != 0 || speed > 10 || speed < 0);
   generateBoard(width, height);
+  elements.score.innerHTML = "1";
+  elements.speed.innerHTML = String(speed);
+  elements.width.innerHTML = String(width);
+  elements.height.innerHTML = String(height);
   startGameLoop();
 }
 function generateBoard(w, h) {
