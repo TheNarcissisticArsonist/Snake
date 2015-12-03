@@ -20,6 +20,8 @@ currentTime = null;
 delta = null;
 alive = false;
 snakeColor = "#00ff00";
+snakeHeadColor = "#008800";
+foodColor = "#0000ff";
 
 function confirmStartNewGame() {
   if(confirm("Starting new game...")) {
@@ -172,7 +174,13 @@ function updateDisplay() {
   for(i=0; i<height; ++i) {
     for(j=0; j<width; ++j) {
       if(board[i][j][3]) {
+        board[i][j][0].style.backgroundColor = snakeHeadColor;
+      }
+      else if(board[i][j][2]) {
         board[i][j][0].style.backgroundColor = snakeColor;
+      }
+      else if(board[i][j][1]) {
+        board[i][j][0].style.backgroundColor = foodColor;
       }
     }
   }
