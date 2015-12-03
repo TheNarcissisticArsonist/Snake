@@ -104,6 +104,15 @@ function clearBoard() {
   snakeWasHere = [];
   gameOverBool = false;
 }
+function clearBoardAndUI() {
+  if(confirm("Are you sure you want to reset?")) {
+    clearBoard();
+    elements.score.innerHTML = "";
+    elements.speed.innerHTML = "";
+    elements.width.innerHTML = "";
+    elements.height.innerHTML = "";
+  }
+}
 
 function createSnake() {
   row = Math.floor(Math.random() * (height-2) + 1);
@@ -262,7 +271,7 @@ function updateDisplay() {
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
-elements.reset.addEventListener("click", clearBoard);
+elements.reset.addEventListener("click", clearBoardAndUI);
 
 document.addEventListener("keydown", function(event) {
   switch(event.which) {
