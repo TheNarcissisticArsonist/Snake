@@ -184,6 +184,7 @@ function animate() {
     delta = 0;
     updateSnakePosition();
     eat();
+    addFoodIfNeeded();
     updateDisplay();
   }
 
@@ -247,11 +248,29 @@ function eat() {
     snake.push(snakeWasHere);
     board[snakeWasHere[0]][snakeWasHere[1]][1] = false;
     board[snakeWasHere[0]][snakeWasHere[1]][2] = true;
+    food = [];
   }
 }
 function updateDirection(newDir) {
   oldDirection = currentDirection;
   currentDirection = newDir;
+}
+function addFoodIfNeeded() {
+  if(food.length == 0) {
+    placeFood();
+  }
+}
+function placeFood() {
+  placed = false;
+  while(!placed) {
+    row = Math.floor(Math.random() * height);
+    col = Math.floor(Math.random() * width);
+    if(board[row][col][1] == false && board[row][col][2] == false) {
+      food = [row, col];
+      board[row][col][1] = true;
+      placed = true;
+    }
+  }
 }
 function updateDisplay() {
   for(i=0; i<height; ++i) {
