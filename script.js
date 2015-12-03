@@ -264,4 +264,12 @@ function updateDisplay() {
 elements.newGame.addEventListener("click", confirmStartNewGame);
 elements.reset.addEventListener("click", clearBoard);
 
+document.addEventListener("keydown", function(event) {
+  switch(event.which) {
+    case 78: //n
+      confirmStartNewGame();
+      break;
+  }
+});
+
 clearBoard();
