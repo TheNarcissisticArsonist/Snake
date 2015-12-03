@@ -154,6 +154,7 @@ function animate() {
   if(delta > 1000/speed) {
     delta = 0;
     move();
+    updateDisplay();
   }
 
   /*console.log(lastFrameTime);
@@ -166,6 +167,15 @@ function animate() {
 
 function move() {
   console.log("Moved");
+}
+function updateDisplay() {
+  for(i=0; i<height; ++i) {
+    for(j=0; j<width; ++j) {
+      if(board[i][j][3]) {
+        board[i][j][0].style.backgroundColor = snakeColor;
+      }
+    }
+  }
 }
 
 elements.newGame.addEventListener("click", confirmStartNewGame);
