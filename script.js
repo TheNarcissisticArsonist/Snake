@@ -170,7 +170,10 @@ function animate() {
   console.log(currentTime);
   console.log(delta);*/
 
-  if(!gameOverBool) {
+  if(gameOverBool) {
+    gameOver();
+  }
+  else {
     lastFrameTime = currentTime;
     requestAnimationFrame(animate);
   }
@@ -195,10 +198,7 @@ function updateSnakePosition() {
       }
     }
   }
-  if(gameOverBool) {
-    gameOver();
-  }
-  else {
+  if(!gameOverBool) {
     for(i=0; i<height; ++i) {
       for(j=0; j<width; ++j) {
         board[i][j][1] = 0;
