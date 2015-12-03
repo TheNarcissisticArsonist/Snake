@@ -315,6 +315,9 @@ document.addEventListener("keydown", function(event) {
       updateDirection([0,1]);
       break;
   }
+  if([32,37,38,39,40].indexOf(event.which) > -1) {
+    event.preventDefault();
+  }
 });
 
 clearBoard();
