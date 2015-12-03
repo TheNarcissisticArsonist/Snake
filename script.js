@@ -220,7 +220,7 @@ function updateSnakePosition() {
       deadSnake = [snake[i][0]-currentDirection[0],snake[i][1]-currentDirection[1]];
     }
     if(i>0) {
-      if(snake[i] == snake[0]) {
+      if(snake[i][0] == snake[0][0] && snake[i][1] == snake[0][1]) {
         gameOverBool = true;
         deadSnake = [snake[i][0]-currentDirection[0],snake[i][1]-currentDirection[1]];
       }
